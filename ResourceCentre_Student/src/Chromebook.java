@@ -1,13 +1,13 @@
 
 public class Chromebook extends Item{
-	private String os;
+	private int os;
 
-	public Chromebook(String assetTag, String description, String os) {
+	public Chromebook(String assetTag, String description, int os2) {
 		super(assetTag, description);
-		this.os = os;
+		this.os = os2;
 	}
 
-	public String getOs() {
+	public int getOs() {
 		return os;
 	}
 	
