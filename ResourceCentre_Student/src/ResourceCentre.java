@@ -9,8 +9,8 @@ public class ResourceCentre {
 
 		camcorderList.add(new Camcorder("CC001", "Sony HDR-CX405", 35));
 		camcorderList.add(new Camcorder("CC002", "Panasonic HC-MDH2", 10));
-		chromebookList.add(new Chromebook("CB001", "ASUS Chromebook ", "Win 10"));
-		chromebookList.add(new Chromebook("CB002", "HP Chromebook", "Win 10"));
+		chromebookList.add(new Chromebook("CB001", "ASUS Chromebook ", 35));
+		chromebookList.add(new Chromebook("CB002", "HP Chromebook", 10));
 
 		int option = 0;
 
@@ -170,14 +170,22 @@ public class ResourceCentre {
 		System.out.println("Camcorder added");
 	}
 	
-	public static Chromebook inputChromebook() {	
-		Chromebook cb =null;
-		// write your code here
+	public static Chromebook inputChromebook() {
+		Chromebook cb=null;
+		
+		String tag =Helper.readString("Enter asset tag > ");
+		String description=Helper.readString("Enter description > ");
+		int os=Helper.readInt("Enter OS > ");
+		
+		cb=new Chromebook(tag, description, os);
 		return cb;
 		
 	}	
 	public static void addChromebook(ArrayList<Chromebook> chromebookList, Chromebook cb) {
 		// write your code here
+		
+		chromebookList.add(cb);
+		System.out.println("Chromebook added");
 	}
 	
 	//================================= Option 3 Loan =================================

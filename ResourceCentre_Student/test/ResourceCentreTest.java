@@ -24,8 +24,8 @@ public class ResourceCentreTest {
 		// prepare test data
 		cc1 = new Camcorder("CC0011", "Nikon HDSLR", 40);
 		cc2 = new Camcorder("CC0012", "Sony DSC-RX100M7", 20);
-		cb1 = new Chromebook("CB0011", "My Google Chromebook 1st", "Mac OS");
-		cb2 = new Chromebook("CB0012", "SAMSUNG Chromebook 4+", "Win 10");
+		cb1 = new Chromebook("CB0011", "My Google Chromebook 1st", 40);
+		cb2 = new Chromebook("CB0012", "SAMSUNG Chromebook 4+", 20);
 
 		camcorderList= new ArrayList<Camcorder>();
 		chromebookList= new ArrayList<Chromebook>();
@@ -52,6 +52,15 @@ public class ResourceCentreTest {
 	public void addChromebookTest() {
 		//fail("Not yet implemented");
 		// write your code here
+		assertNotNull("Test if there is valid Chromebook arraylist to add to", chromebookList);
+		
+		ResourceCentre.addChromebook(chromebookList, cb1);		
+		assertEquals("Test if that Chromebook arraylist size is 1?", 1, chromebookList.size());
+		
+		assertSame("Test that Chromebook is added same as 1st item of the list?", cb1, chromebookList.get(0));
+		
+		ResourceCentre.addChromebook(chromebookList, cb2);
+		assertEquals("Test that Chromebook arraylist size is 2?", 2, chromebookList.size());
 	}
 	
 	@Test
@@ -88,6 +97,20 @@ public class ResourceCentreTest {
 	public void doLoanCamcorderTest() {
 		//fail("Not yet implemented");
 		// write your code here
+		assertNotNull("Test if there is vali Camcorder arrayList to add to", camcorderList);
+		ResourceCentre.addCamcorder(camcorderList, cc1);
+		
+		boolean isLoaned=ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", "23-07-2020");
+		cc1.setIsAvailable(false);
+		assertFalse("Check that unavailable Camcorder cannot be loaned", isLoaned);
+		
+		isLoaned=ResourceCentre.doLoanCamcorder(camcorderList, "CC0013", "23-07-2020");
+		assertFalse("Check that non-existing Camcorder cannot be loaned", isLoaned);
+		
+		ResourceCentre.addCamcorder(camcorderList, cc2);
+		isLoaned=ResourceCentre.doLoanCamcorder(camcorderList, "CC0012", "23-07-2020");
+		assertTrue("Check that available bool can be loaned", isLoaned);
+		
 		
 	}
 	
